@@ -19,6 +19,13 @@
   </properties>
 
   <dependencies>
+
+    <dependency>
+      <groupId>com.baulsupp.kolja</groupId>
+      <artifactId>jcurses</artifactId>
+      <version>0.9.5.3</version>
+    </dependency>
+
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
