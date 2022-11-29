@@ -11,6 +11,11 @@ import com.gitgood.game.levels.Level1;
  */
 public class App {
     public static void main(String[] args) {
+        createAndShowGUI();
+
+    }
+
+    static void createAndShowGUI() {
         setDarkMode();
         JFrame frame = new JFrame("LeGit (Git Good)     ");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -48,7 +53,6 @@ public class App {
         frame.setVisible(true);
 
         // set panel to black background
-
     }
 
     static void setDarkMode() {
