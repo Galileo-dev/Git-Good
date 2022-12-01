@@ -9,50 +9,58 @@ import com.gitgood.game.levels.Level1;
  * Hello world!
  *
  */
-public class App {
+
+public class Main {
     public static void main(String[] args) {
+        App app = new App();
+        app.run();
+    }
+
+}
+
+class App {
+    private JFrame frame;
+    private SpringLayout layout;
+
+    public void run() {
         createAndShowGUI();
 
     }
 
-    static void createAndShowGUI() {
+    void createAndShowGUI() {
         setDarkMode();
-        JFrame frame = new JFrame("LeGit (Git Good)     ");
+        this.frame = new JFrame("LeGit (Git Good)     ");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(700, 500);
         // create a layout manager
-        SpringLayout layout = new SpringLayout();
+        this.layout = new SpringLayout();
         frame.setLayout(layout);
 
-        JPanel panel = new JPanel();
-        frame.add(panel);
+        // set bottom panel
+        JPanel bottomPanel = bottomPanel();
 
-        // panel fill frame
-        // layout.putConstraint(SpringLayout.NORTH, panel, 0, SpringLayout.NORTH,
-        // frame.getContentPane());
-        layout.putConstraint(SpringLayout.WEST, panel, 0, SpringLayout.WEST, frame.getContentPane());
-        layout.putConstraint(SpringLayout.SOUTH, panel, 0, SpringLayout.SOUTH, frame.getContentPane());
-        // layout.putConstraint(SpringLayout.EAST, panel, 0, SpringLayout.EAST,
-        // frame.getContentPane());
-
-        // anchor to the bottom of the frame
-        layout.putConstraint(SpringLayout.SOUTH, panel, 0, SpringLayout.SOUTH, frame.getContentPane());
-
-        JLabel command = new JLabel("command");
-        panel.add(command);
-
-        // add a text field to the frame under the label
-        JTextField commandText = new JTextField(20);
-        panel.add(commandText);
-
-        // add a button to the frame under the text field
-        JButton button = new JButton("Execute");
-        panel.add(button);
-        // set dark mode
+        // add bottom panel to frame
+        frame.add(bottomPanel);
 
         frame.setVisible(true);
+    }
 
-        // set panel to black background
+    JPanel bottomPanel() {
+        // anchor bottom panel to bottom of frame
+
+        JPanel bottomPanel = new JPanel();
+
+        layout.putConstraint(SpringLayout.WEST, bottomPanel, 0, SpringLayout.WEST, frame.getContentPane());
+        layout.putConstraint(SpringLayout.EAST, bottomPanel, 0, SpringLayout.EAST, frame.getContentPane());
+        layout.putConstraint(SpringLayout.SOUTH, bottomPanel, 0, SpringLayout.SOUTH, frame.getContentPane());
+
+        JLabel command = new JLabel("command");
+        bottomPanel.add(command);
+
+        JTextField commandText = new JTextField(20);
+        bottomPanel.add(commandText);
+        return bottomPanel;
+
     }
 
     static void setDarkMode() {
