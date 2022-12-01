@@ -1,4 +1,4 @@
-package com.gitgood.game.levels;
+package com.GameLogic.levels;
 
 // import jcurses 
 import jcurses.widgets.Window;

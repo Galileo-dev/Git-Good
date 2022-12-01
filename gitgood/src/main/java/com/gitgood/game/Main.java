@@ -1,9 +1,10 @@
 package com.gitgood.game;
 
 import javax.swing.*;
-import java.awt.*;
 
-import com.gitgood.game.levels.Level1;
+import com.GameLogic.levels.Level1;
+
+import java.awt.*;
 
 /**
  * Hello world!
