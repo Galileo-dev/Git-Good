@@ -36,11 +36,17 @@ class App {
         this.layout = new SpringLayout();
         frame.setLayout(layout);
 
-        // set bottom panel
-        JPanel bottomPanel = bottomPanel();
-
         // add bottom panel to frame
+        JPanel bottomPanel = bottomPanel();
         frame.add(bottomPanel);
+
+        // add top left panel to frame
+        JPanel topLeftPanel = topLeftPanel();
+        frame.add(topLeftPanel);
+
+        // add top right panel to frame
+        JPanel topRightPanel = topRightPanel();
+        frame.add(topRightPanel);
 
         frame.setVisible(true);
     }
@@ -61,6 +67,35 @@ class App {
         bottomPanel.add(commandText);
         return bottomPanel;
 
+    }
+
+    JPanel topLeftPanel() {
+        JPanel topLeftPanel = new JPanel();
+        layout.putConstraint(SpringLayout.WEST, topLeftPanel, 0, SpringLayout.WEST, frame.getContentPane());
+        layout.putConstraint(SpringLayout.NORTH, topLeftPanel, 0, SpringLayout.NORTH, frame.getContentPane());
+
+        // big text area
+        JTextArea textArea = new JTextArea(25, 40);
+        textArea.setEditable(false);
+        textArea.setLineWrap(true);
+        textArea.setWrapStyleWord(true);
+        textArea.setText("hello world");
+        topLeftPanel.add(textArea);
+
+        return topLeftPanel;
+    }
+
+    JPanel topRightPanel() {
+        JPanel topRightPanel = new JPanel();
+        layout.putConstraint(SpringLayout.EAST, topRightPanel, 0, SpringLayout.EAST, frame.getContentPane());
+        layout.putConstraint(SpringLayout.NORTH, topRightPanel, 0, SpringLayout.NORTH, frame.getContentPane());
+
+        // add an image level1.png
+        ImageIcon imageIcon = new ImageIcon("gitgood/level1.png");
+        JLabel imageLabel = new JLabel(imageIcon);
+        topRightPanel.add(imageLabel);
+
+        return topRightPanel;
     }
 
     static void setDarkMode() {
