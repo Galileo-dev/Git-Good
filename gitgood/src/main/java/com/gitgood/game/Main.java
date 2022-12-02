@@ -2,7 +2,12 @@ package com.gitgood.game;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyListener;
+import java.awt.event.KeyEvent;
+import java.security.Key;
 
+import com.gitgood.game.levels.BaseLevel;
+import com.gitgood.game.levels.Level;
 import com.gitgood.game.levels.beginner.Level1;
 import com.gitgood.game.utils.StretchIcon;
 
@@ -22,11 +27,13 @@ public class Main {
 class App {
     private JFrame frame;
     private SpringLayout layout;
-
+    private Level level; 
+    private JTextArea questionArea;
+    private JTextArea answerArea;
     public void run() {
         createAndShowGUI();
-        Level1 level1 = new Level1(this.frame);
-        level1.start();
+        level = new BaseLevel(questionArea, answerArea);
+        level.start();
 
     }
 
@@ -74,36 +81,75 @@ class App {
         JLabel command = new JLabel("command");
         bottomPanel.add(command);
 
-        JTextField commandText = new JTextField(20);
-        commandText.setText("Enter command here");
-        commandText.addKeyListener(null);
+        final JTextField commandText = new JTextField(20);
+        commandText.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                // TODO Auto-generated method stub
+
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+                // print out the key that was pressed
+                System.out.println(e.getKeyChar());
+                // if the key that was pressed was enter
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    // get the text from the command text field
+                    String command = commandText.getText();
+                    // if the command is "help"
+                    matchCommand(command);
+
+                    // clear the command text field
+                    commandText.setText("");
+                }
+
+
+            }
+
+           
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+                // TODO Auto-generated method stub
+
+            }
+        });
 
         bottomPanel.add(commandText);
         return bottomPanel;
 
     }
 
+
+    
     JPanel topLeftPanel() {
         JPanel topLeftPanel = new JPanel();
         layout.putConstraint(SpringLayout.WEST, topLeftPanel, 0, SpringLayout.WEST, frame.getContentPane());
         layout.putConstraint(SpringLayout.NORTH, topLeftPanel, 0, SpringLayout.NORTH, frame.getContentPane());
 
         // big text area
-        JTextArea questionArea = new JTextArea(25, 40);
+        questionArea = new JTextArea(8, 40);
         questionArea.setEditable(false);
         questionArea.setLineWrap(true);
         questionArea.setWrapStyleWord(true);
         questionArea.setText("Question Area");
-        topLeftPanel.add(questionArea);
+        
+        JScrollPane questionAreaScroll = new JScrollPane (questionArea, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+
+
+        topLeftPanel.add(questionAreaScroll);
 
         // big text area
-        JTextArea textArea = new JTextArea(25, 40);
-        textArea.setEditable(false);
-        textArea.setLineWrap(true);
-        textArea.setWrapStyleWord(true);
-        textArea.setText("Text Area");
-        topLeftPanel.add(textArea);
+        answerArea = new JTextArea(20, 40);
+        answerArea.setEditable(false);
+        answerArea.setLineWrap(true);
+        answerArea.setWrapStyleWord(true);
+        answerArea.setText("Text Area");
+       
+        JScrollPane answerAreaScroll = new JScrollPane (answerArea, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 
+        topLeftPanel.add(answerAreaScroll);
         return topLeftPanel;
     }
 
@@ -167,4 +213,12 @@ class App {
         }
         // Show your JFrame
     }
+
+
+    private void matchCommand(String command) {
+        level.handleCommand(command);
+    }
+
+
+
 }
