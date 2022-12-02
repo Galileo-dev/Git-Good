@@ -8,6 +8,7 @@ import java.security.Key;
 
 import com.gitgood.game.levels.BaseLevel;
 import com.gitgood.game.levels.Level;
+import com.gitgood.game.levels.LevelSelection;
 import com.gitgood.game.levels.beginner.Level1;
 import com.gitgood.game.utils.StretchIcon;
 
@@ -27,12 +28,13 @@ public class Main {
 class App {
     private JFrame frame;
     private SpringLayout layout;
-    private Level level; 
+    private Level level;
     private JTextArea questionArea;
     private JTextArea answerArea;
+
     public void run() {
         createAndShowGUI();
-        level = new BaseLevel(questionArea, answerArea);
+        level = new LevelSelection(questionArea, answerArea);
         level.start();
 
     }
@@ -104,10 +106,7 @@ class App {
                     commandText.setText("");
                 }
 
-
             }
-
-           
 
             @Override
             public void keyReleased(KeyEvent e) {
@@ -121,8 +120,6 @@ class App {
 
     }
 
-
-    
     JPanel topLeftPanel() {
         JPanel topLeftPanel = new JPanel();
         layout.putConstraint(SpringLayout.WEST, topLeftPanel, 0, SpringLayout.WEST, frame.getContentPane());
@@ -134,9 +131,9 @@ class App {
         questionArea.setLineWrap(true);
         questionArea.setWrapStyleWord(true);
         questionArea.setText("Question Area");
-        
-        JScrollPane questionAreaScroll = new JScrollPane (questionArea, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 
+        JScrollPane questionAreaScroll = new JScrollPane(questionArea, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+                JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 
         topLeftPanel.add(questionAreaScroll);
 
@@ -146,8 +143,9 @@ class App {
         answerArea.setLineWrap(true);
         answerArea.setWrapStyleWord(true);
         answerArea.setText("Text Area");
-       
-        JScrollPane answerAreaScroll = new JScrollPane (answerArea, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+
+        JScrollPane answerAreaScroll = new JScrollPane(answerArea, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+                JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 
         topLeftPanel.add(answerAreaScroll);
         return topLeftPanel;
@@ -214,11 +212,8 @@ class App {
         // Show your JFrame
     }
 
-
     private void matchCommand(String command) {
         level.handleCommand(command);
     }
-
-
 
 }
