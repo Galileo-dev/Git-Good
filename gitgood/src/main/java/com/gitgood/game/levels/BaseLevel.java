@@ -4,6 +4,7 @@ import javax.swing.JFrame;
 import javax.swing.JTextArea;
 
 public class BaseLevel implements Level {
+    String command = "";
     LevelLogic handleCommandFunction;
     JTextArea questionArea;
     JTextArea answerArea;
@@ -21,6 +22,7 @@ public class BaseLevel implements Level {
 
     // handle commands
     public void handleCommand(String command) {
+        this.command = command;
         answerArea.append("\n" + command);
         handleCommandFunction.run(command);
     }

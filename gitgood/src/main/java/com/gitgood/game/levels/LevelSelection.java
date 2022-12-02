@@ -1,6 +1,7 @@
 package com.gitgood.game.levels;
 
 import javax.swing.JTextArea;
+import com.gitgood.game.utils.Helpers;
 
 public class LevelSelection extends BaseLevel {
 
@@ -21,18 +22,27 @@ public class LevelSelection extends BaseLevel {
         handleCommandFunction = new LevelLogic() {
             public void run() {
                 if (command.equals("1")) {
+                    isFinished = true;
                     // Beginner
                     // Level1 level1 = new Level1(questionArea, answerArea);
                     // level1.start();
                 } else if (command.equals("2")) {
+                    isFinished = true;
                     // Intermediate
                 } else if (command.equals("3")) {
+                    isFinished = true;
                     // Advanced
                 } else {
                     answerArea.append("\n Not a valid level.");
                 }
             };
         };
+
+        Helpers.WaitUntilNextPhase(handleCommandFunction);
+
+        // you selected a level
+
+        questionArea.append("\n You selected a level " + command);
 
     }
 }
