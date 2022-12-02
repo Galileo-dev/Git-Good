@@ -3,7 +3,8 @@ package com.gitgood.game;
 import javax.swing.*;
 import java.awt.*;
 
-import com.gitgood.game.levels.Level1;
+import com.gitgood.game.levels.beginner.Level1;
+import com.gitgood.game.utils.StretchIcon;
 
 /**
  * Hello world!
@@ -24,6 +25,8 @@ class App {
 
     public void run() {
         createAndShowGUI();
+        Level1 level1 = new Level1(this.frame);
+        level1.start();
 
     }
 
@@ -31,21 +34,29 @@ class App {
         setDarkMode();
         this.frame = new JFrame("LeGit (Git Good)     ");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(700, 500);
+        frame.setSize(1000, 600);
         // create a layout manager
         this.layout = new SpringLayout();
         frame.setLayout(layout);
 
         // add bottom panel to frame
         JPanel bottomPanel = bottomPanel();
-        frame.add(bottomPanel);
 
         // add top left panel to frame
         JPanel topLeftPanel = topLeftPanel();
-        frame.add(topLeftPanel);
 
         // add top right panel to frame
         JPanel topRightPanel = topRightPanel();
+
+        // attach top left panel to bottom panel
+        // attach top left panel to top right panel
+        layout.putConstraint(SpringLayout.EAST, topLeftPanel, 0, SpringLayout.WEST, topRightPanel);
+
+        // attach top right panel to bottom panel
+        layout.putConstraint(SpringLayout.SOUTH, topLeftPanel, 0, SpringLayout.NORTH, bottomPanel);
+
+        frame.add(bottomPanel);
+        frame.add(topLeftPanel);
         frame.add(topRightPanel);
 
         frame.setVisible(true);
@@ -64,6 +75,9 @@ class App {
         bottomPanel.add(command);
 
         JTextField commandText = new JTextField(20);
+        commandText.setText("Enter command here");
+        commandText.addKeyListener(null);
+
         bottomPanel.add(commandText);
         return bottomPanel;
 
@@ -75,11 +89,19 @@ class App {
         layout.putConstraint(SpringLayout.NORTH, topLeftPanel, 0, SpringLayout.NORTH, frame.getContentPane());
 
         // big text area
+        JTextArea questionArea = new JTextArea(25, 40);
+        questionArea.setEditable(false);
+        questionArea.setLineWrap(true);
+        questionArea.setWrapStyleWord(true);
+        questionArea.setText("Question Area");
+        topLeftPanel.add(questionArea);
+
+        // big text area
         JTextArea textArea = new JTextArea(25, 40);
         textArea.setEditable(false);
         textArea.setLineWrap(true);
         textArea.setWrapStyleWord(true);
-        textArea.setText("hello world");
+        textArea.setText("Text Area");
         topLeftPanel.add(textArea);
 
         return topLeftPanel;
@@ -89,17 +111,28 @@ class App {
         JPanel topRightPanel = new JPanel();
         layout.putConstraint(SpringLayout.EAST, topRightPanel, 0, SpringLayout.EAST, frame.getContentPane());
         layout.putConstraint(SpringLayout.NORTH, topRightPanel, 0, SpringLayout.NORTH, frame.getContentPane());
+        // stretch icon to fit panel
+
+        // Image image = new ImageIcon("src/main/resoug").getImage();
+        // StretchIcon icon = new StretchIcon(image);
+        // JLabel label = new JLabel(icon);
+        // topRightPanel.add(label);
 
         // add an image level1.png
-        ImageIcon imageIcon = new ImageIcon("gitgood/level1.png");
-        JLabel imageLabel = new JLabel(imageIcon);
-        topRightPanel.add(imageLabel);
+        // ImageIcon imageIcon = new ImageIcon("gitgood/level1.png");
+        // JLabel imageLabel = new JLabel(imageIcon);
+        // topRightPanel.add(imageLabel);
+
+        JLabel label = new JLabel(new StretchIcon("gitgood/level1.png", false));
+        label.setPreferredSize(new Dimension(500, 500));
+        topRightPanel.add(label);
 
         return topRightPanel;
     }
 
     static void setDarkMode() {
         // set panel to black background
+
         UIManager.put("control", new Color(128, 128, 128));
         UIManager.put("info", new Color(128, 128, 128));
         UIManager.put("nimbusBase", new Color(18, 30, 49));
