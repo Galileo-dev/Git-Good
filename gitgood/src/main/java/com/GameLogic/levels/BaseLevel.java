@@ -1,5 +1,9 @@
 package com.GameLogic.levels;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
 public class BaseLevel {
     private String[] Narrative; 
     private String[] AnswerList;
@@ -13,6 +17,24 @@ public class BaseLevel {
         this.StoryProgression = 0;
     }
 
+    public String[] getNarrativeList(String filename){
+        String NarrativeNotList = "";
+        try {
+            File myObj = new File(filename);
+            Scanner myReader = new Scanner(myObj);
+            while (myReader.hasNextLine()) {
+              String data = myReader.nextLine();
+              NarrativeNotList += data;
+            }
+            myReader.close();
+          } catch (FileNotFoundException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+          }
+          String[] NarrativeList = NarrativeNotList.split("||");
+
+        return NarrativeList;
+    }
 
     public int checkAnswer(String input){
         if(input.equals(AnswerList[AnswerProgression])){
@@ -20,6 +42,10 @@ public class BaseLevel {
             return 1;
         }
         return -1;
+    }
+
+    public String concatinateFilename(String level) {
+        return ("level" + level + ".txt");
     }
 
 
