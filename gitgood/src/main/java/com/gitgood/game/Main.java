@@ -6,10 +6,10 @@ import java.awt.event.KeyListener;
 import java.awt.event.KeyEvent;
 import java.security.Key;
 
+import com.gitgood.game.level.Level1;
 import com.gitgood.game.levels.BaseLevel;
 import com.gitgood.game.levels.Level;
 import com.gitgood.game.levels.LevelSelection;
-import com.gitgood.game.levels.beginner.Level1;
 import com.gitgood.game.utils.StretchIcon;
 
 /**
@@ -36,12 +36,16 @@ class App {
         createAndShowGUI();
         level = new LevelSelection(questionArea, answerArea);
         level.start();
+        while (level.getNextLevel() != null) {
+            level = level.getNextLevel();
+            level.start();
+        }
 
     }
 
     void createAndShowGUI() {
         setDarkMode();
-        this.frame = new JFrame("LeGit (Git Good)     ");
+        this.frame = new JFrame("LeGit (Git Good)");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(1000, 600);
         // create a layout manager
