@@ -6,6 +6,8 @@ public abstract class LevelLogic implements Runnable {
 
     public void run(String command) {
         this.command = command;
+        // run the function that was passed in
         run();
+
     }
 }

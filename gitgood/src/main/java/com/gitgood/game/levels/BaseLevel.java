@@ -5,9 +5,10 @@ import javax.swing.JTextArea;
 
 public class BaseLevel implements Level {
     String command = "";
-    LevelLogic handleCommandFunction;
-    JTextArea questionArea;
-    JTextArea answerArea;
+    protected LevelLogic handleCommandFunction;
+    Level nextLevel;
+    protected JTextArea questionArea;
+    public JTextArea answerArea;
 
     public BaseLevel(JTextArea questionArea, JTextArea answerArea) {
         this.handleCommandFunction = new LevelLogic() {
@@ -25,6 +26,11 @@ public class BaseLevel implements Level {
         this.command = command;
         answerArea.append("\n" + command);
         handleCommandFunction.run(command);
+    }
+
+    // get next level
+    public Level getNextLevel() {
+        return nextLevel;
     }
 
     // start of level
