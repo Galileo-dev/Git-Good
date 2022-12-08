@@ -1,5 +1,8 @@
 package com.gitgood.game.level;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.swing.JTextArea;
 
 import com.gitgood.game.levels.BaseLevel;
@@ -13,6 +16,7 @@ public class Level1 extends BaseLevel {
     }
 
     public void start() {
+        questionArea.setText("");
         questionArea.append("\nWelcome to Level 1! In this level, you will learn how to type basic Git commands.\n");
 
         // Present the player with a list of basic Git commands to type
@@ -21,10 +25,14 @@ public class Level1 extends BaseLevel {
         for (String command : commands) {
             questionArea.append("\nType the following command: " + command);
 
-            handleCommandFunction = new LevelLogic() {
+            Map<String, String> config = new HashMap<>();
+            config.put("commands", command);
+
+            handleCommandFunction = new LevelLogic(config) {
                 public void run() {
                     // Check if the player typed the correct command
-                    if (command.equals(this.command)) {
+                    String correctCommand = config.get("commands");
+                    if (correctCommand.equals(this.command)) {
                         answerArea.append("\nCorrect! Good job.");
                         isFinished = true;
                     } else {
