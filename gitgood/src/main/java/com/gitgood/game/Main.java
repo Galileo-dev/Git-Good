@@ -130,7 +130,7 @@ class App {
         layout.putConstraint(SpringLayout.NORTH, topLeftPanel, 0, SpringLayout.NORTH, frame.getContentPane());
 
         // big text area
-        questionArea = new JTextArea(8, 40);
+        questionArea = new JTextArea(15, 40);
         questionArea.setEditable(false);
         questionArea.setLineWrap(true);
         questionArea.setWrapStyleWord(true);
@@ -142,7 +142,7 @@ class App {
         topLeftPanel.add(questionAreaScroll);
 
         // big text area
-        answerArea = new JTextArea(20, 40);
+        answerArea = new JTextArea(13, 40);
         answerArea.setEditable(false);
         answerArea.setLineWrap(true);
         answerArea.setWrapStyleWord(true);
