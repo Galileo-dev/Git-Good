@@ -3,6 +3,7 @@ package com.gitgood.game.levels;
 import javax.swing.JTextArea;
 
 import com.gitgood.game.level.Level1;
+import com.gitgood.game.level.Level2;
 import com.gitgood.game.utils.Helpers;
 
 public class LevelSelection extends BaseLevel {
@@ -15,8 +16,7 @@ public class LevelSelection extends BaseLevel {
         questionArea.append("\nPlease Select a Level: \n");
         questionArea.append("\n" +
                 "1 - Beginner \n" +
-                "2 - Intermediate \n" +
-                "3 - Advanced \n");
+                "2 - Intermediate \n");
 
         handleCommandFunction = new LevelLogic() {
             public void run() {
@@ -26,9 +26,6 @@ public class LevelSelection extends BaseLevel {
                 } else if (command.equals("2")) {
                     isFinished = true;
                     // Intermediate
-                } else if (command.equals("3")) {
-                    isFinished = true;
-                    // Advanced
                 } else {
                     answerArea.append("\n Not a valid level.");
                 }
@@ -49,12 +46,7 @@ public class LevelSelection extends BaseLevel {
                 break;
             case "2":
                 // Intermediate
-                // nextLevel = new Level1(questionArea, answerArea);
-                break;
-            case "3":
-                // Advanced
-                // nextLevel = new Level1(questionArea, answerArea);
-
+                nextLevel = new Level2(questionArea, answerArea);
                 break;
             default:
                 break;

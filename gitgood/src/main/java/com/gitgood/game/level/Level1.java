@@ -117,7 +117,7 @@ public class Level1 extends BaseLevel {
         public void run() {
             // Check if the player typed the correct command
             questionArea.append("\nNow try checking the other team\n Narrator: Hint, try putting a .before a slash to go up a level\n");
-            if (this.command.toLowerCase().indexOf("./") == 0) {
+            if (this.command.toLowerCase().indexOf("cd ./") == 0) {
                 answerArea.setText("");
                 answerArea.append("\nC:/Teams to scout ");
                 isFinished = true;
@@ -161,65 +161,96 @@ handleCommandFunction = new LevelLogic() {
     };
 };
 
+Helpers.WaitUntilNextPhase(handleCommandFunction);
+handleCommandFunction = new LevelLogic() {
+    public void run() {
+        // Check if the player typed the correct command
+        questionArea.append("\nLeBron: You better pick the best player on this team \n C:/Teams to scout");
+        if (this.command.toLowerCase().indexOf("mv") == 0) {
+            answerArea.setText("");
+//team lsit     
+            answerArea.append("\nWell done!\n C:/Teams to scout/Urbanstown Rangers \n");
+            isFinished = true;
+        } else {
+            answerArea.append("\nLeBron: You know that players trash, try again");
+        }
+    };
+};
+
     Helpers.WaitUntilNextPhase(handleCommandFunction);
+
     handleCommandFunction = new LevelLogic() {
         public void run() {
             // Check if the player typed the correct command
-            questionArea.append("\nLeBron: You better pick the best player on this team \n C:/Teams to scout");
-            if (this.command.toLowerCase().indexOf("mv") == 0) {
+            questionArea.append("\nNarrator: after picking the team members you go to _____  to begin the new team roster(hint its a git command)\n LeBron: We've got to initaise a new team roster for the upcoming matches\n Can you do that for me? \nC:/TeamRoster");
+            if (this.command.toLowerCase().indexOf("git init") == 0) {
                 answerArea.setText("");
-//team lsit     
-                answerArea.append("\nWell done!\n C:/Teams to scout/Urbanstown Rangers \n");
+                answerArea.append("\nWell done!\n The team has been initiaised\n");
                 isFinished = true;
             } else {
-                answerArea.append("\nLeBron: You know that players trash, try again");
+                answerArea.append("\nTry INITAILISING the team in git");
             }
         };
     };
-    
-        Helpers.WaitUntilNextPhase(handleCommandFunction);
 
-        handleCommandFunction = new LevelLogic() {
-            public void run() {
-                // Check if the player typed the correct command
-                questionArea.append("\nNarrator: after picking the team members you go to _____  to begin the new team roster(hint its a git command)\n LeBron: We've got to initaise a new team roster for the upcoming matches\n Can you do that for me? \nC:/TeamRoster");
-                if (this.command.toLowerCase().indexOf("git init") == 0) {
-                    answerArea.setText("");
-                    answerArea.append("\nWell done!\n The team has been initiaised\n");
-                    isFinished = true;
-                } else {
-                    answerArea.append("\nTry INITAILISING the team in git");
-                }
-            };
+    handleCommandFunction = new LevelLogic() {
+        public void run() {
+            // Check if the player typed the correct command
+            questionArea.append("\nLeBron: Now can you check the team to see the layout\nC:/TeamRoster");
+            if (this.command.toLowerCase().indexOf("ls") == 0) {
+                answerArea.setText("");
+                answerArea.append("\nLeBron: Looks like I'm missing from the list you better add me to it or else\n");
+                isFinished = true;
+            } else {
+                answerArea.append("\nListing... you should know it at this stage");
+            }
         };
+    };
 
-        handleCommandFunction = new LevelLogic() {
-            public void run() {
-                // Check if the player typed the correct command
-                questionArea.append("\nLeBron: Now can you check the team to see the layout\nC:/TeamRoster");
-                if (this.command.toLowerCase().indexOf("git init") == 0) {
-                    answerArea.setText("");
-                    answerArea.append("\nTeam looks good to me\n");
-                    isFinished = true;
-                } else {
-                    answerArea.append("\nListing... you should know it at this stage");
-                }
-            };
+    handleCommandFunction = new LevelLogic() {
+        public void run() {
+            // Check if the player typed the correct command
+            questionArea.append("\nC:/TeamRoster");
+            if (this.command.toLowerCase().indexOf("cd ./") == 0) {
+                answerArea.setText("");
+                answerArea.append("\nC:\n");
+                isFinished = true;
+            } else {
+                answerArea.append("\nCHANGE DIRECTORY into the C drive");
+            }
         };
+    };
 
-        handleCommandFunction = new LevelLogic() {
-            public void run() {
-                // Check if the player typed the correct command
-                questionArea.append("\nLeBron: Now make a new team roster for the Urbanstown rnagers, ____ should be good against tehem\nC:/TeamRoster");
-                if (this.command.toLowerCase().indexOf("git init") == 0) {
-                    answerArea.setText("");
-                    answerArea.append("\nTeam looks good to me\n");
-                    isFinished = true;
-                } else {
-                    answerArea.append("\nListing... you should know it at this stage");
-                }
-            };
+    handleCommandFunction = new LevelLogic() {
+        public void run() {
+            // Check if the player typed the correct command
+            questionArea.append("\nLeBron: Now make a new team roster for the Urbanstown rangers, ____ should be good against them\n Narrator: Switch to a new Branch to do this Hint(You'll need a -c for this)) \nC:/TeamRoster");
+            if (this.command.toLowerCase().indexOf("git swith -c urbanstwon rangers") == 0) {
+                answerArea.setText("");
+                answerArea.append("\nTeam looks good to me\n");
+                isFinished = true;
+            } else {
+                answerArea.append("\nTry SWTICHING to a new branch");
+            }
         };
+    };
+    handleCommandFunction = new LevelLogic() {
+        public void run() {
+            // Check if the player typed the correct command
+            questionArea.append("\n Narrator: Do git branch to see what branch you're on");
+            if (this.command.toLowerCase().indexOf("git branch") == 0) {
+                answerArea.setText("");
+                answerArea.append("\nmain\n\n");
+                isFinished = true;
+            } else {
+                answerArea.append("\nTry SWTICHING to a new branch");
+            }
+        };
+    };
+
+        
+
+
 }
 }
 
