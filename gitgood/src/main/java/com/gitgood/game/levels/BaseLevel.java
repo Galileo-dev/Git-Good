@@ -6,7 +6,7 @@ import javax.swing.JTextArea;
 public class BaseLevel implements Level {
     String command = "";
     protected LevelLogic handleCommandFunction;
-    Level nextLevel;
+    protected Level nextLevel;
     protected JTextArea questionArea;
     public JTextArea answerArea;
 
