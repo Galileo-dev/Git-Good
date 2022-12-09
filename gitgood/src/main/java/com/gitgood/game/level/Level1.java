@@ -225,7 +225,7 @@ handleCommandFunction = new LevelLogic() {
         public void run() {
             // Check if the player typed the correct command
             questionArea.append("\nLeBron: Now make a new team roster for the Urbanstown rangers, ____ should be good against them\n Narrator: Switch to a new Branch to do this Hint(You'll need a -c for this)) \nC:/TeamRoster");
-            if (this.command.toLowerCase().indexOf("git swith -c urbanstwon rangers") == 0) {
+            if (this.command.toLowerCase().indexOf("git switch -c urbanstown rangers") == 0) {
                 answerArea.setText("");
                 answerArea.append("\nTeam looks good to me\n");
                 isFinished = true;
@@ -240,12 +240,27 @@ handleCommandFunction = new LevelLogic() {
             questionArea.append("\n Narrator: Do git branch to see what branch you're on");
             if (this.command.toLowerCase().indexOf("git branch") == 0) {
                 answerArea.setText("");
-                answerArea.append("\nmain\n\n");
+                answerArea.append("\nbenchwarmers\n\n");
                 isFinished = true;
             } else {
                 answerArea.append("\nTry SWTICHING to a new branch");
             }
         };
+    };
+    };
+        handleCommandFunction = new LevelLogic() {
+        public void run() {
+            // Check if the player typed the correct command
+            questionArea.append("\nLebron: The next team we are going to face are very good on defense so I need you to put one of our players which is on the bench on the team based on that. This is the skills of the players on the bench at the moment.\nSteph Curry: Very good for far shots and good against defenders\nFrank Ntilikina: good defender\nChristano Ronaldo: doesn't play basketball\nNarrator: use git switch -c ______(player name) to make a new team with that player);
+            if (this.command.toLowerCase().indexOf("git branch") == 0) {
+                answerArea.setText("");
+                answerArea.append("\ngit switch -c steph curry\n\n");
+                isFinished = true;
+            } else {
+                answerArea.append("\nTry a different player");
+            }
+        };
+    };
     };
 
         
