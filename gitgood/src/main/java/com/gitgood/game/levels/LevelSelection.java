@@ -39,7 +39,7 @@ public class LevelSelection extends BaseLevel {
 
         // you selected a level
 
-        questionArea.append("\n You selected a level " + command);
+        questionArea.append("\n You selected the level " + command);
 
         // select level
         switch (command) {
