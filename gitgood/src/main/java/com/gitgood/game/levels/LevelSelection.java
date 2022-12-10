@@ -45,6 +45,9 @@ public class LevelSelection extends BaseLevel {
                 nextLevel = new Level1(questionArea, answerArea);
                 break;
             case "2":
+            questionArea.setText("");
+            questionArea.append("Welcome to Level 2! In this level, you will learn how to deal with online repositories in git\nType next to continue");
+
                 // Intermediate
                 nextLevel = new Level2(questionArea, answerArea);
                 break;
